@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_not_found_contract"
+        android:icon="@android:drawable/ic_dialog_info"
+        android:title="@string/not_found_contract">
+    </item>
+
+    <item
+        android:id="@+id/menu_settings"
+        android:icon="@android:drawable/ic_menu_preferences"
+        android:title="@string/action_settings">
+    </item>
+
+    <group
+        android:id="@+id/menu_group_buy">
+
+        <item
+            android:id="@+id/menu_buy"
+            android:icon="@drawable/ic_menu_buy"
+            android:title="@string/buy">
+        </item>
+
+        <item
+            android:id="@+id/menu_AD_disable"
+            android:icon="@drawable/ic_menu_buy"
+            android:title="@string/disable_ads">
+        </item>
+    </group>
+
+    <group
+        android:id="@+id/menu_group_expired_time_info"
+        android:visible="false">
+
+        <item
+            android:id="@+id/menu_expired_time_info"
+            android:icon="@drawable/ic_menu_unlock_full"
+            android:title="@string/subscriptions_expired">
+        </item>
+    </group>
+
+    <group
+        android:id="@+id/menu_group_development"
+        android:visible="false">
+
+        <item
+            android:id="@+id/menu_development"
+            android:title="@string/development">
+        </item>
+
+        <item
+            android:id="@+id/menu_check_update"
+            android:title="Проверить обновление">
+        </item>
+
+    </group>
+
+
+</menu>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Генератор договоров</string>
+    <string name="button_cancel">Отмена</string>
+    <string name="button_exit">Закрыть</string>
+    <string name="button_leave_feedback">Оставить отзыв</string>
+    <string name="button_ok">Ок</string>
+    <string name="button_request_more_contracts">Сделать запрос</string>
+    <string name="button_send">Отправить</string>
+    <string name="button_unlock">Разблокировать</string>
+    <string name="buy">Купить</string>
+    <string name="document_locked">Документ заблокирован</string>
+    <string name="document_unlocked">Документ разблокирован</string>
+    <string name="document_сreated">"Создан документ: "</string>
+    <string name="error">Ошибка</string>
+    <string name="file_name">Имя файла:</string>
+    <string name="found_a_bug">Нашли ошибку?</string>
+    <string name="help">Помощь</string>
+    <string name="load">Загрузить</string>
+    <string name="message_data_will_be_lost">Все введенные данные будут потеряны. Вы уверены?</string>
+    <string name="not_found_contract">Не нашли нужный?</string>
+    <string name="preview">Предпросмотр</string>
+    <string name="save">Сохранить</string>
+    <string name="save_config">Сохранить набор</string>
+    <string name="save_template">Сохранить шаблон</string>
+    <string name="share">Поделиться</string>
+    <string name="title_activity_expressions">Договор</string>
+    <string name="title_activity_main">Генератор договоров</string>
+    <string name="title_load_error">Ошибка загрузки</string>
+    <string name="tools">Настройки</string>
+    <string name="unlocked">Разблокирован</string>
+    <string name="warning">Внимание !</string>
+    <string name="you_have_free_documents">"У вас осталось бесплатных попыток: "</string>
+    <string name="you_have_one_free_document">У вас есть еще одна бесплатная попытка создать документ</string>
+    <string name="you_have_two_free_documents">У вас есть еще две бесплатные попытки создать документ</string>
+    <string name="action_settings">Настройки</string>
+    <string name="error_сreating_document">К сожалению, случилась ошибка при создании документа. Информация будет отправлена разработчикам для скорейшего исправления. Просим прощения.</string>
+    <string name="help_expression_activity">Все поля заполнять не обязательно. Пустые поля в созданном документе будут заменены подчеркиванием, для заполнения их после печати. Для перехода к следующему шагу (Предпросмотр документа) - нажмите стрелочку внизу экрана.</string>
+    <string name="message_load_error">К сожалению, загружать наборы можно в полной версии.</string>
+    <string name="message_not_found_contract">Мы работаем над добавлением новых документов. Если приложение Вам пригодилось, или у Вас есть пожелания, оцените его или оставьте отзыв. Положительная оценка, пускай даже авансом, придает сил в дальнейшей разработке. Всем спасибо!</string>
+    <string name="message_request_created">Спасибо за участие, ваша заявка будет рассмотрена!</string>
+    <string name="message_write_bug_description">Пожалуйста, опишите проблему. Добавьте номера пунктов, которые нужно переработать.</string>
+    <string name="no_write_permissions">Нет разрешения на запись, документ создать не удалось.</string>
+    <string name="help_preview_activity">Внимательно проверьте текст, помеченный красным цветом. Следующий шаг - создание документа.</string>
+    <string name="title_activity_preview">Предпросмотр</string>
+    <string name="button_disable">Отключить</string>
+    <string name="disable_ads">Отключить рекламу?</string>
+    <string name="subscriptions_expired">Абонемент истекает:</string>
+    <string name="unavailable">Недоступно</string>
+    <string name="free">Бесплатно</string>
+    <string name="buy_premium">Купить</string>
+    <string name="title_activity_purchase">Купить</string>
+    <string name="premium">полная версия</string>
+    <string name="development">Разработка</string>
+    <string name="title_activity_development">Разработка</string>
+    <string name="processing">Обработка ...</string>
+    <string name="ads">Реклама</string>
+
+    <!-- Preference General settings -->
+
+    <string name="pref_title_font_size">Размер шрифта</string>
+    <string name="title_activity_settings">Настройки</string>
+    <string name="pref_margins">Отступы</string>
+    <string name="pref_margin_left">Левый</string>
+    <string name="pref_margin_right">Правый</string>
+    <string name="pref_margin_top">Верхний</string>
+    <string name="pref_margin_bottom">Нижний</string>
+    <string name="pref_title_date_format">Формат даты</string>
+
+    <string-array name="pref_font_size_titles">
+        <item>По умолчанию</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+    </string-array>
+
+    <string-array name="pref_margin_titles">
+        <item>По умолчанию</item>
+        <item>0.5 cм</item>
+        <item>1 cм</item>
+        <item>2 cм</item>
+        <item>3 cм</item>
+    </string-array>
+
+    <!-- End Preference general settings -->
+
+</resources>

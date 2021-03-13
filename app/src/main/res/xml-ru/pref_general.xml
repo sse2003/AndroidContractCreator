@@ -1,0 +1,62 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditTextPreference
+        android:capitalize="words"
+        android:defaultValue="@string/pref_default_date_format"
+        android:inputType="textCapWords"
+        android:key="date_format"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/pref_title_date_format" />
+
+    <ListPreference
+        android:defaultValue="@string/default_font_size_value"
+        android:entries="@array/pref_font_size_titles"
+        android:entryValues="@array/pref_font_size_values"
+        android:key="font_size"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/pref_title_font_size" />
+
+    <PreferenceCategory android:title="@string/pref_margins">
+
+        <ListPreference
+            android:defaultValue="-1"
+            android:entries="@array/pref_margin_titles"
+            android:entryValues="@array/pref_margin_values"
+            android:key="margin_left"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="@string/pref_margin_left" />
+
+        <ListPreference
+            android:defaultValue="-1"
+            android:entries="@array/pref_margin_titles"
+            android:entryValues="@array/pref_margin_values"
+            android:key="margin_right"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="@string/pref_margin_right" />
+
+        <ListPreference
+            android:defaultValue="-1"
+            android:entries="@array/pref_margin_titles"
+            android:entryValues="@array/pref_margin_values"
+            android:key="margin_top"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="@string/pref_margin_top" />
+
+        <ListPreference
+            android:defaultValue="-1"
+            android:entries="@array/pref_margin_titles"
+            android:entryValues="@array/pref_margin_values"
+            android:key="margin_bottom"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="@string/pref_margin_bottom" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

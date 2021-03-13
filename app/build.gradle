@@ -1,0 +1,376 @@
+apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+
+android {
+    signingConfigs {
+        config {
+            try {
+                keyAlias KEY_ALIAS
+                keyPassword KEY_PASSWORD
+                storeFile file(STORE_PATH)
+                storePassword STORE_PASSWORD
+            } catch (ex) {
+                throw new Exception("You should define Variables in gradle.properties. Error: " + ex);
+            }
+        }
+    }
+
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
+    defaultConfig {
+
+// ---------------------------------------
+        versionCode 36
+        versionName "1.36"
+// ---------------------------------------
+
+        applicationId "org.sse.contracts"
+        minSdkVersion 14
+
+        targetSdkVersion 28
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+
+        multiDexEnabled true
+
+        signingConfig signingConfigs.config
+        vectorDrawables.useSupportLibrary true
+
+    }
+
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+
+    buildTypes {
+
+        release {
+            shrinkResources true
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+
+            buildConfigField "boolean", "DEBUG_NO_PREMIUM", "false"
+            buildConfigField "boolean", "DEBUG_AD_ALWAYS", "false"
+            buildConfigField "boolean", "DEBUG_CONSUME_ALL_PURCHASED_ITEM", "false"
+        }
+
+
+        debug {
+            shrinkResources false
+            minifyEnabled false
+            multiDexEnabled false
+
+            buildConfigField "boolean", "DEBUG_NO_PREMIUM", "false"
+            buildConfigField "boolean", "DEBUG_AD_ALWAYS", "false"
+            buildConfigField "boolean", "DEBUG_CONSUME_ALL_PURCHASED_ITEM", "false"
+        }
+
+        debug_no_premium {
+            debuggable true
+            shrinkResources false
+            minifyEnabled false
+            multiDexEnabled false
+
+            buildConfigField "boolean", "DEBUG_NO_PREMIUM", "true"
+            buildConfigField "boolean", "DEBUG_AD_ALWAYS", "false"
+            buildConfigField "boolean", "DEBUG_CONSUME_ALL_PURCHASED_ITEM", "false"
+        }
+
+        debug_ad_always {
+            debuggable true
+            shrinkResources false
+            minifyEnabled false
+            multiDexEnabled false
+
+            buildConfigField "boolean", "DEBUG_NO_PREMIUM", "false"
+            buildConfigField "boolean", "DEBUG_AD_ALWAYS", "true"
+            buildConfigField "boolean", "DEBUG_CONSUME_ALL_PURCHASED_ITEM", "false"
+        }
+
+        debug_consume_all_purchased_item {
+            debuggable true
+            shrinkResources false
+            minifyEnabled false
+            multiDexEnabled false
+
+            buildConfigField "boolean", "DEBUG_NO_PREMIUM", "false"
+            buildConfigField "boolean", "DEBUG_AD_ALWAYS", "true"
+            buildConfigField "boolean", "DEBUG_CONSUME_ALL_PURCHASED_ITEM", "true"
+        }
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+
+    productFlavors {
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    androidTestImplementation 'com.android.support:multidex:1.0.3'
+
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:support-v4:28.0.0'
+    implementation 'com.android.support:design:28.0.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation 'com.android.support:multidex:1.0.3'
+    implementation 'com.google.android.gms:play-services-ads:11.8.0'
+    implementation 'com.google.firebase:firebase-ads:11.8.0'
+    implementation 'com.google.firebase:firebase-core:11.8.0'
+    implementation 'com.google.firebase:firebase-database:11.8.0'
+    implementation 'com.google.firebase:firebase-storage:11.8.0'
+    implementation 'com.google.firebase:firebase-crashlytics:17.3.1'
+
+
+    // https://habr.com/ru/post/263419/
+    implementation 'co.trikita:log:1.1.5'
+
+    implementation 'org.onepf:openiab:0.9.8.6'
+    // Amazon AppStore
+    implementation 'com.amazon:in-app-purchasing:2.0.1'
+    // Fortumo SDK
+    implementation 'com.braintree:fortumo-in-app:9.1.2'
+    implementation project(path: ':lvl')
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.mockito:mockito-core:1.10.19'
+
+}
+
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
+
+/*
+* https://habrahabr.ru/post/167227/
+* https://stackoverflow.com/questions/31425566/gradle-script-for-aes-encryption
+* https://stackoverflow.com/questions/7781348/java-aes-encrypt-entire-string
+*/
+
+import javax.crypto.spec.IvParameterSpec
+import javax.crypto.spec.SecretKeySpec
+import javax.crypto.Cipher
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.regex.Matcher
+import java.util.regex.Pattern
+
+ext {
+    ASSETS_ENCRUPT_KEY = "1111111111111111".padRight(16).getBytes("UTF-8")
+    IV = "1111111111111111".padRight(16).getBytes("UTF-8")
+    SOURCE_ASSETS = "${project.projectDir}/src/main/assets_decryption"
+    TARGET_ASSETS = "${project.projectDir}/src/main/assets"
+    SOURCE_ASSETS_DATA_CONTRACTS = SOURCE_ASSETS + "/data/contracts"
+
+    EXCEPT_FOLDER = "fonts"
+}
+
+task processDeleteAssets {
+    doLast {
+
+        File file = new File(TARGET_ASSETS)
+        deleteAllFiles(file.listFiles())
+    }
+}
+
+task processCheckHtmlCodeOptimizationAssets(dependsOn: processDeleteAssets) {
+    doLast {
+
+        File sourceContracts = new File(SOURCE_ASSETS_DATA_CONTRACTS)
+        optimizeFiles(sourceContracts.listFiles())
+    }
+
+}
+
+task processCopyAssets(dependsOn: processCheckHtmlCodeOptimizationAssets, type: Copy) {
+    from SOURCE_ASSETS
+    into TARGET_ASSETS
+    exclude '**/#*.*'
+
+}
+
+task processEncryptAssets(dependsOn: processCopyAssets) {
+    doLast {
+        File lockFile = new File(TARGET_ASSETS + "/lock")
+        if (lockFile.exists()) throw new Exception('Error clear assets folder')
+
+        File target = new File(TARGET_ASSETS)
+        if (target.listFiles().length < 1) throw new Exception("Empty files: " + target.getAbsolutePath())
+
+        File sourceContracts = new File(SOURCE_ASSETS_DATA_CONTRACTS)
+
+        createIndex(sourceContracts.listFiles())
+
+        encryptFiles(target.listFiles())
+
+        lockFile.createNewFile()
+    }
+}
+
+//preBuild.dependsOn(processEncryptAssets)
+
+tasks.whenTaskAdded {
+        //    task -> println 'add task:=' + task.name
+    task ->
+        task.name
+        if (task.name == 'mergeDebugAssets' || task.name == 'mergeReleaseAssets') {
+            task.dependsOn processEncryptAssets
+        }
+}
+
+void createIndex(files)
+{
+    DateFormat DEFAULT_DATE_FORMAT = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss")
+
+    File index = new File(SOURCE_ASSETS + "/../index")
+    FileOutputStream fos = new FileOutputStream(index)
+    OutputStreamWriter osw = new OutputStreamWriter(fos, "UTF-8")
+    BufferedWriter indexWriter = new BufferedWriter(osw)
+    indexWriter.append("# The file is created automatically \r\n")
+    indexWriter.append("# Create time: " + DEFAULT_DATE_FORMAT.format(Calendar.getInstance().getTime()) + "\r\n")
+
+    for (File f : files) {
+        if (f.isFile())
+            createIndex(indexWriter, f)
+    }
+
+    indexWriter.close()
+}
+
+void createIndex(BufferedWriter indexWriter, File source)
+{
+    FileInputStream fis = new FileInputStream(source)
+    InputStreamReader isr = new InputStreamReader(fis, "UTF-8")
+    BufferedReader reader = new BufferedReader(isr)
+
+    String line = ""
+    while (line != null) {
+
+        if (!line.isEmpty()) {
+            try {
+                Pattern PATTERN_DOCUMENT_VERSION = Pattern.compile("(?s)Версия документа:\\s*(\\d+)")
+                Matcher m = PATTERN_DOCUMENT_VERSION.matcher(line)
+                if (m.find()) {
+                    String v = m.group(1)
+                    indexWriter.append("\"" + source.getName() + "\" " + v + "\r\n")
+                    return
+                }
+            } catch (Exception e) {
+                println "Error: " + e
+            }
+        }
+
+        line = reader.readLine()
+    }
+}
+
+void encryptFiles(files) {
+    for (File f : files) {
+        if (f.isFile()) encryptFile(f.getAbsolutePath())
+        else if (f.isDirectory() && checkExceptFolder(f.getName())) encryptFiles(f.listFiles())
+    }
+}
+
+Boolean checkExceptFolder(name) {
+    return name != EXCEPT_FOLDER
+}
+
+void encryptFile(filePath) {
+    println " - " + filePath
+
+    def source = file(filePath)
+    def encData = encrypt(source)
+    source.delete()
+    source << encData
+}
+
+void deleteAllFiles(files) {
+    for (File f : files) {
+        if (f.isFile()) deleteFile(f.getAbsolutePath())
+        else if (f.isDirectory()) {
+            deleteAllFiles(f.listFiles())
+            deleteFile(f.getAbsolutePath())
+        }
+    }
+}
+
+void deleteFile(filePath) {
+    println " - " + filePath
+    def source = file(filePath)
+    source.delete()
+}
+
+byte[] encrypt(source) {
+    SecretKeySpec key = new SecretKeySpec(ASSETS_ENCRUPT_KEY, "AES")
+    Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding")
+    cipher.init(Cipher.ENCRYPT_MODE, key, new IvParameterSpec(IV))
+    return cipher.doFinal(source.bytes)
+}
+
+void optimizeFiles(files) {
+    for (File f : files) {
+        if (f.isFile() && f.getName().startsWith("#")) optimizeFile(f)
+        else if (f.isDirectory() && checkExceptFolder(f.getName())) optimizeFiles(f.listFiles())
+    }
+}
+
+void optimizeFile(File sourceFile) {
+    println " - " + sourceFile.getAbsolutePath()
+    String targetName = sourceFile.getAbsolutePath().replace("#", "");
+    File target = new File(targetName)
+    if (target.exists())
+        throw new Exception("File already exist: " + targetName)
+
+    FileInputStream fis = new FileInputStream(sourceFile)
+    InputStreamReader isr = new InputStreamReader(fis, "UTF-8")
+    String source = convertStreamToString(isr)
+
+    // ---------------------------------------------------------------------
+    // see: RegExpTest:testOptimizeHtml()
+
+    source = source.replaceAll("([^>])\r\n", "\$1 ")
+    source = source.replaceAll("([^>])\n", "\$1 ")
+    source = source.replaceAll("&nbsp; ", "&nbsp;")
+    source = source.replaceAll(" &nbsp;", "&nbsp;")
+
+    int len = 0
+    while (source.length() != len)  {
+        len = source.length();
+        source = source.replaceFirst("&nbsp;&nbsp;", "&nbsp;")
+    }
+
+    len = 0
+
+    while (source.length() != len) {
+        len = source.length();
+        // Удаляем пустые, бессмысленные теги
+        source = source.replaceFirst("<[^!\\/].[^>\\/]*?><\\/.*?>", "");
+    }
+    // ---------------------------------------------------------------------
+
+    FileOutputStream fos = new FileOutputStream(target)
+    OutputStreamWriter osw = new OutputStreamWriter(fos, "UTF-8")
+    BufferedWriter targetWriter = new BufferedWriter(osw)
+
+    targetWriter.write(source)
+    targetWriter.close()
+    isr.close()
+}
+
+String convertStreamToString(InputStreamReader is) {
+    Scanner s = new Scanner(is).useDelimiter("\\A");
+    return s.hasNext() ? s.next() : "";
+}

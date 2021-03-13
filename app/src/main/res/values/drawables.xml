@@ -1,0 +1,7 @@
+<resources>
+    <item name="ic_help" type="drawable">@android:drawable/ic_menu_help</item>
+    <item name="ic_lock" type="drawable">@android:drawable/ic_lock_idle_lock</item>
+    <item name="ic_save" type="drawable">@android:drawable/ic_menu_save</item>
+    <item name="ic_info_details" type="drawable">@android:drawable/ic_menu_info_details</item>
+
+</resources>

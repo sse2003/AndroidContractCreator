@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layoutExpressionView"
+    style="?android:attr/listSeparatorTextViewStyle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    android:baselineAligned="true"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:padding="6dp"
+    android:weightSum="100">
+
+    <FrameLayout
+        android:id="@+id/layoutExpressionValue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="100"
+        />
+
+    <Button
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:background="@android:drawable/ic_menu_view"
+        android:onClick="onPreview"
+        android:text="" />
+
+</LinearLayout>
+

@@ -1,0 +1,134 @@
+<resources>
+    <string name="app_name">Contract creator</string>
+
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+
+    <string name="tools">Tools</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="error">Error</string>
+    <string name="document_сreated">"Created document: "</string>
+    <string name="error_сreating_document">Error when creating document. Sorry.</string>
+    <string name="share">Share</string>
+    <string name="title_activity_expressions">Contract</string>
+    <string name="title_activity_main">Contract Creator</string>
+    <string name="save">Save</string>
+    <string name="save_template">Save template</string>
+
+    <string name="admob_publisher_id" translatable="false">ca-app-pub-</string>
+    <string name="banner1_ad_unit_id" translatable="false">ca-app-pub-</string>
+    <string name="banner2_ad_unit_id" translatable="false">ca-app-pub-</string>
+    <string name="interstitial1_ad_unit_id" translatable="false">ca-app-pub-</string>
+
+    <string name="not_found_contract">Not found contract?</string>
+    <string name="button_ok">Ok</string>
+    <string name="button_request_more_contracts">Make request</string>
+    <string name="button_exit">Close</string>
+    <string name="button_send">Send</string>
+    <string name="message_request_created">Thank you for participating, your request will be considered!</string>
+    <string name="no_write_permissions">There is no write permission, the document could not be created.</string>
+    <string name="found_a_bug">Found a bug?</string>
+    <string name="message_write_bug_description">Please describe the problem. Add the numbers of the items you want to remake.</string>
+    <string name="button_leave_feedback">Leave feedback</string>
+    <string name="preview">Preview</string>
+    <string name="help">Help</string>
+    <string name="help_preview_activity">Carefully check the text marked in red. The next step is to create a document.</string>
+    <string name="button_cancel">Cancel</string>
+    <string-array name="share_items" translatable="false">
+        <item>Документом</item>
+        <item>Шаблоном</item>
+    </string-array>
+    <string name="warning">Warning !</string>
+    <string name="message_data_will_be_lost">All input data will be lost. You are sure?</string>
+    <string name="load">Load</string>
+    <string name="save_config">Save config</string>
+    <string name="file_name">File name:</string>
+    <string name="buy">Buy</string>
+    <string name="document_unlocked">Document unlocked</string>
+    <string name="document_locked">Document locked</string>
+    <string name="you_have_one_free_document">You have one attempt left</string>
+    <string name="you_have_two_free_documents">You have two attempt left</string>
+    <string name="you_have_free_documents">"You have left attempts: "</string>
+    <string name="message_load_error">Sorry, loading templates is only possible in the Full version.</string>
+    <string name="title_load_error">Load error</string>
+    <string name="button_unlock">Unlock</string>
+    <string name="unlocked">Unlocked</string>
+    <string name="help_expression_activity">Press floating button for next step.</string>
+    <string name="title_activity_purchase">Buy</string>
+    <string name="message_not_found_contract">We are working on adding new contracts. But, you can leave feedback.</string>
+    <string name="title_activity_preview">Preview</string>
+    <string name="button_disable">Disable</string>
+    <string name="disable_ads">Disable ads?</string>
+    <string name="subscriptions_expired">Subscriptions expired:</string>
+    <string name="banner1_reward_ad_unit_id" translatable="false">ca-app-pub-7623933071507185/7346134722</string>
+    <string name="unavailable">Unavailable</string>
+    <string name="free">Free</string>
+    <string name="development">Development</string>
+    <string name="title_activity_development">Development</string>
+    <string name="buy_premium">Buy</string>
+    <string name="premium">premium</string>
+    <string name="processing">Processing ...</string>
+    <string name="ads">ADS</string>
+
+
+    <!-- Preference General settings -->
+
+    <string name="title_activity_settings">Settings</string>
+    <string name="pref_title_font_size">Font size</string>
+    <string name="pref_margins">Margins</string>
+    <string name="pref_margin_left">Left</string>
+    <string name="pref_margin_right">Right</string>
+    <string name="pref_margin_top">Top</string>
+    <string name="pref_margin_bottom">Bottom</string>
+    <string name="pref_title_date_format">Date format</string>
+    <string name="pref_default_date_format" translatable="false">\"dd\" MMMM yyyy г</string>
+    <string name="default_font_size_value" translatable="false">Default</string>
+    <string name="language" translatable="false">Language</string>
+    <string name="pref_other_language_is_not_supported" translatable="false">Sorry, language change is not supported! I warned you about this in the description of the application, so do not rush to put a negative feedback. Currently all documents are only in Russian.</string>
+
+    <string-array name="pref_font_size_titles">
+        <item>Default</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+    </string-array>
+
+    <string-array name="pref_font_size_values">
+        <item>Default</item>
+        <item>8pt</item>
+        <item>9pt</item>
+        <item>10pt</item>
+        <item>11pt</item>
+        <item>12pt</item>
+        <item>13pt</item>
+        <item>14pt</item>
+        <item>15pt</item>
+        <item>16pt</item>
+    </string-array>
+
+    <string-array name="pref_margin_titles">
+        <item>Default</item>
+        <item>16 pt</item>
+        <item>32 pt</item>
+        <item>64 pt</item>
+        <item>96 pt</item>
+    </string-array>
+
+    <string-array name="pref_margin_values">
+        <item>-1</item>
+        <item>16</item>
+        <item>32</item>
+        <item>64</item>
+        <item>96</item>
+    </string-array>
+
+    <!-- End Preference general settings -->
+
+</resources>

@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
+<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+<link rel="stylesheet" href="../style.css" type="text/css" /><title>Пример HTML документа, со встроенными стилями, формат
+листа A4</title>
+
+<!-- Версия документа: 2 Автор: SSE GroupId: group_0 -->
+</head>
+<body>
+<div id="content">
+<ul>
+<p style="font-style: italic; text-decoration: underline;"><span style="font-weight: bold;">Элементы списка:</span> </p>
+<li style="text-align: left;">
+<p>Текст слева</p>
+</li>
+<li style="text-align: center;">
+<p>Текст по центру</p>
+</li>
+<li style="text-align: right;">
+<p>Текст справа</p>
+</li>
+</ul>
+Нумерованный список:<br />
+<ol>
+<li>Один</li>
+<li>Два</li>
+<li>Три</li>
+<ol>
+<li>Один</li>
+<li>Два<br />
+</li>
+</ol>
+</ol>
+Перевод строки
+<br />
+<p><span class="redLetter">П</span>ример
+строки с использованием стиля</p>
+<p style="font-family: Times New Roman;">Шрифт Times New
+Roman</p>
+<p style="font-family: Times New Roman Cyr;">Шрифт Times
+New Roman Cyr</p>
+<p style="font-family: Arial;">Шрифт Arial</p>
+<p style="font-family: Courier New;">Шрифт Courier New</p>
+<p style="font-family: Consolas;">Шрифт Consolas</p>
+<p style="font-family: Andalus;">Шрифт Andalus</p>
+<p style="font-family: Droid Sans;">Шрифт Droid Sans</p>
+<p style="font-family: Anonymous Pro;">Шрифт Anonymous Pro</p>
+<p style="font-family: Comic Relief;">Шрифт Comic Relief</p>
+<p style="font-family: Arsenal;">Шрифт Arsenal</p>
+<p style="font-size: 10pt;">Стандартный шрифт, размер 10
+pt <span style="font-size: 12pt;">, размер 12 pt</span><span style="font-size: 14pt;">, размер 14 pt</span> <span style="font-size: 16pt;">, размер 16 pt</span> </p>
+<p><span style="font-weight: bold;">Жирный</span>
+<span style="font-style: italic;">Курсив</span> <span style="text-decoration: underline;">Подчеркивание</span></p>
+</div>
+<br />
+<div id="expressions">
+<div style="text-align: center;"><span style="font-weight: bold;">Пример использования классов
+стилей для сокрытия блока текста при генерации документа</span><br />
+</div>
+Есть 4 стилевых класса для каждого&nbsp;типа документа: <br />
+ЮР-ЮР: typeUU <br />
+ФИЗ-ФИЗ: typeFF<br />
+ЮР-ФИЗ: typeUF<br />
+ФИЗ-ЮР: typeFU<br />
+Когда в документе нужно выделить блок, только для определенного типа
+документа, его нужно обернуть в тег с нужным классом. И при генерации
+документа с заданным типом, останется именно этот блок текста. Текст
+без этих классов остается всегда.<br />
+<br />
+Например: <br />
+Четные цифры останутся только в документе ЮР-ЮР: 1<span class="typeUU">2</span>3<span class="typeUU">4</span>5<span class="typeUU">6</span>7<span class="typeUU">8</span><br />
+Четные цифры останутся только в документе ФИЗ-ФИЗ: 1<span class="typeFF">2</span>3<span class="typeFF">4</span>5<span class="typeFF">6</span>7<span class="typeFF">8</span><br />
+Четные цифры останутся только в документе ЮР-ФИЗ: 1<span class="typeUF">2</span>3<span class="typeUF">4</span>5<span class="typeUF">6</span>7<span class="typeUF">8</span><br />
+Четные цифры останутся только в документе ФИЗ-ЮР: 1<span class="typeFU">2</span>3<span class="typeFU">4</span>5<span class="typeFU">6</span>7<span class="typeFU">8</span><br />
+Невидимый div:
+<div style="display: none;">DIV</div>
+<br />
+<div style="text-align: center;"><span style="font-weight: bold;">Дальше идет список выражений для
+автозамены в документе:</span><br />
+</div>
+<br />
+<table style="width: 100%; text-align: left;" border="0" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<td>Город: '<span style="text-decoration: underline;">##.c='Город'
+#'</span></td>
+<td>Дата: '##.c='текущая_дата'
+#'</td>
+</tr>
+</tbody>
+</table>
+<br />
+Текст с длинной пустого шаблона 10 символов без подчеркивания:<br />
+'##.t='10' Текст, длина шаблона 10 символов#'<br />
+<br />
+Текст с&nbsp; длинной 10
+символов: <br />
+'<span style="text-decoration: underline;">##.t='10'
+Текст 1#'</span>
+<br />
+Текст с&nbsp; длинной 10
+символов со стилевым подчеркиванием: <br />
+'<span style="text-decoration: underline;">##.t='10'.s='&nbsp;'
+Текст 2#</span>'
+<br />
+Текст с&nbsp; длинной 10
+символов с символом подчеркивания '_': <br />
+'##.t='10'.s='_'
+Текст 3#'<br />
+<br />
+Заполнение в 2 строки,&nbsp;со стилевым подчеркиванием: <br />
+<span style="text-decoration: underline;">##.m='200%'.t='200%'.s='&nbsp;'
+Заполнение в 2 строки 1#</span><br />
+Заполнение&nbsp;в 2 строки,&nbsp;с символом подчеркивания:
+<br />
+##.m='200%'.t='200%'.s='_' Заполнение в&nbsp; 2 строки 2#<br />
+<br />
+ФИО, без класса: <span style="text-decoration: underline;">##
+ФИО#</span><br />
+ФИО, с классом: <span style="text-decoration: underline;">##.c='ФИО'&nbsp;#</span><br />
+<div style="text-align: center;">Группы<br />
+</div>
+Начало группы 1. ##@Группа 1#<br />
+Выражение 1 в группе: ##Выражение 1#<br />
+Выражение 2 в группе: ##Выражение 2#<br />
+Начало группы 2. ##@Группа 2#<br />
+Выражение 1 в группе: ##Выражение 1#<br />
+Выражение 2 в группе: ##Выражение 2#<br />
+<br />
+<div style="text-align: center;">Вставки</div>
+</div>
+Внешний документ без параметров: <span style="font-weight: bold;">##$Без_параметров#</span><br />
+Внешний документ с параметрами: <span style="font-weight: bold;">##$С_параметрами, Параметр 1, Параметр 2#</span>
+</body></html>

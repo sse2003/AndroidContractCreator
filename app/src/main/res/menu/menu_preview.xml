@@ -1,0 +1,19 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="org.sse.contracts.activity.PreviewActivity">
+
+    <item
+        android:icon="@android:drawable/ic_menu_help"
+        android:onClick="showHelp"
+        android:title="@string/help"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/itemFoundBug"
+        android:icon="@android:drawable/ic_dialog_alert"
+        android:onClick="foundBug"
+        android:title="@string/found_a_bug" />
+
+
+</menu>
